@@ -1,6 +1,12 @@
 package socialMedia.Relationships;
 
+import socialMedia.CSVWriter;
 import socialMedia.nodes.Person;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.ArrayList;
 
 /**
  * Created by zaharacw on 2/5/17.
@@ -53,5 +59,28 @@ public class Friends implements Comparable<Friends>
         return this.id2 - friend.getId2();
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Friends friends = (Friends) o;
+
+        if (getId1() != friends.getId1()) return false;
+        return getId2() == friends.getId2();
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = getId1();
+        result = 31 * result + getId2();
+        return result;
+    }
+
+    public static void toCSV(ArrayList<Friends> friends, String fileName)
+    {
+        CSVWriter.toCSV(friends.toArray(), "id1,id2", fileName);
+    }
 }

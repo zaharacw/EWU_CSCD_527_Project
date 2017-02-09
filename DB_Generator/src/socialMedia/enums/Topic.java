@@ -1,5 +1,7 @@
 package socialMedia.enums;
 
+import socialMedia.CSVWriter;
+
 /**
  * Created by zaharacw on 2/5/17.
  */
@@ -27,7 +29,7 @@ public enum Topic
 
     public String toString()
     {
-        return this.name;
+        return "" + id + "," + this.name;
     }
 
     public int getId()
@@ -46,5 +48,10 @@ public enum Topic
         }
 
         throw new IllegalArgumentException("Topic ID must be between 1 and 10 inclusive");
+    }
+
+    public static void toCSV(String fileName)
+    {
+        CSVWriter.toCSV(Topic.values(), "id,name", fileName);
     }
 }

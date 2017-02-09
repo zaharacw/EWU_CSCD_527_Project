@@ -1,9 +1,10 @@
-package socialMedia.generators;
+package socialMedia.generators.nodes;
 
 import socialMedia.utilityStructs.CustomDate;
 import socialMedia.nodes.Person;
 import socialMedia.enums.State;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -24,5 +25,17 @@ public class PersonGenerator
         State state = State.of(rand.nextInt(50) + 1);
 
         return new Person(id, state, birth, account);
+    }
+
+    public static ArrayList<Person> createPeople(int startingId, int count)
+    {
+        ArrayList<Person> list = new ArrayList<>();
+
+        for(int i = 0; i < count; i++)
+        {
+            list.add(createPerson(startingId + i));
+        }
+
+        return list;
     }
 }

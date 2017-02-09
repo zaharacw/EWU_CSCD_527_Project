@@ -64,6 +64,28 @@ public class CustomDate implements Comparable<CustomDate>
         return day;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CustomDate that = (CustomDate) o;
+
+        if (getDay() != that.getDay()) return false;
+        if (getMonth() != that.getMonth()) return false;
+        return getYear().equals(that.getYear());
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = getMonth().hashCode();
+        result = 31 * result + getDay();
+        result = 31 * result + getYear().hashCode();
+        return result;
+    }
+
     public String toString()
     {
         return "" + month.getValue() + "/" + day + "/" + year.getValue();

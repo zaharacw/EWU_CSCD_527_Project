@@ -1,10 +1,12 @@
-package socialMedia.generators;
+package socialMedia.generators.nodes;
 
 import socialMedia.enums.Content;
+import socialMedia.nodes.Group;
 import socialMedia.nodes.Person;
 import socialMedia.nodes.Post;
 import socialMedia.utilityStructs.CustomDate;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -20,5 +22,17 @@ public class PostGenerator
         Content content = Content.of(rand.nextInt(4) + 1);
 
         return new Post(id, createdOn, creator, content);
+    }
+
+    public static ArrayList<Post> generatePosts(int startingId, int count, ArrayList<Person> people)
+    {
+        ArrayList<Post> list = new ArrayList<>();
+
+        for (int i = 0; i < count; i++)
+        {
+            list.add(generatePost(startingId + i, people.get(rand.nextInt(people.size()))));
+        }
+
+        return list;
     }
 }

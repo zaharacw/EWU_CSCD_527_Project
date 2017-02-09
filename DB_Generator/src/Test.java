@@ -1,6 +1,18 @@
+import socialMedia.DBGenerator;
+import socialMedia.Relationships.Friends;
+import socialMedia.Relationships.Likes;
+import socialMedia.Relationships.Member;
+import socialMedia.enums.Content;
+import socialMedia.enums.State;
+import socialMedia.enums.Topic;
+import socialMedia.generators.nodes.GroupGenerator;
+import socialMedia.generators.nodes.PostGenerator;
+import socialMedia.nodes.Group;
 import socialMedia.nodes.Person;
-import socialMedia.generators.PersonGenerator;
+import socialMedia.generators.nodes.PersonGenerator;
+import socialMedia.nodes.Post;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -10,13 +22,23 @@ public class Test
 {
     public static void main(String [] args)
     {
-        LinkedList<Person> list = new LinkedList<>();
+        DBGenerator dbGen = new DBGenerator(100, 25, 250);
+        ArrayList<Person> people = dbGen.generatePeople();
+        ArrayList<Group> groups = dbGen.generateGroups(people);
+        ArrayList<Post> posts = dbGen.generatePosts(people);
 
-        for (int i = 1; i <= 10; i++)
-        {
-            list.add(PersonGenerator.createPerson(i));
-        }
+        ArrayList<Friends> friends = dbGen.generateFriends(people,5, 20);
+        ArrayList<Likes> likes = dbGen.generateLikes(people, posts);
+        ArrayList<Member> members = dbGen.generateMembers(people, groups);
 
-        list.stream().forEach(System.out::println);
+        Content.toCSV("content.csv");
+        State.toCSV("state.csv");
+        Topic.toCSV("topic.csv");
+        Person.toCSV(people, "people_test1.csv");
+        Group.toCSV(groups, "groups_test1.csv");
+        Post.toCSV(posts, "posts_test1.csv");
+        Friends.toCSV(friends, "friends_test1.csv");
+        Member.toCSV(members, "members_test1.csv");
+        Likes.toCSV(likes, "likes_test1.csv");
     }
 }

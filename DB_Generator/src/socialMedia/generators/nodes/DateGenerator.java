@@ -1,4 +1,4 @@
-package socialMedia.generators;
+package socialMedia.generators.nodes;
 
 import socialMedia.utilityStructs.CustomDate;
 

@@ -1,7 +1,10 @@
 package socialMedia.nodes;
 
+import socialMedia.CSVWriter;
 import socialMedia.enums.State;
 import socialMedia.utilityStructs.CustomDate;
+
+import java.util.ArrayList;
 
 /**
  * Created by zaharacw on 2/5/17.
@@ -33,6 +36,32 @@ public class Person
         return id;
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Person person = (Person) o;
+
+        if (getId() != person.getId()) return false;
+        if (age != person.age) return false;
+        if (state != person.state) return false;
+        if (!birthday.equals(person.birthday)) return false;
+        return getAccountCreated().equals(person.getAccountCreated());
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int result = getId();
+        result = 31 * result + age;
+        result = 31 * result + state.hashCode();
+        result = 31 * result + birthday.hashCode();
+        result = 31 * result + getAccountCreated().hashCode();
+        return result;
+    }
+
     public String toString()
     {
         return "" + id + ","
@@ -40,5 +69,10 @@ public class Person
                 + birthday.toString() + ","
                 + age + ","
                 + accountCreated.toString();
+    }
+
+    public static void toCSV(ArrayList<Person> people, String fileName)
+    {
+        CSVWriter.toCSV(people.toArray(), "id,state_id,birthday,age,accountCreatedDate", fileName);
     }
 }

@@ -1,5 +1,7 @@
 package socialMedia.enums;
 
+import socialMedia.CSVWriter;
+
 /**
  * Created by zaharacw on 2/5/17.
  */
@@ -84,7 +86,8 @@ public enum State
 
     public String toString()
     {
-        return getName();
+
+        return "" + id + "," + this.getName() + "," + this.getAbv();
     }
 
     public static State of(int id)
@@ -98,5 +101,10 @@ public enum State
         }
 
         throw new IllegalArgumentException("State ID must be between 1 and 50 inclusive");
+    }
+
+    public static void toCSV(String fileName)
+    {
+        CSVWriter.toCSV(State.values(), "id,name,abreviation", fileName);
     }
 }
