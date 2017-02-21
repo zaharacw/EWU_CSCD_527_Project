@@ -2,6 +2,7 @@ package socialMedia.Relationships;
 
 import socialMedia.CSVWriter;
 import socialMedia.nodes.Person;
+import socialMedia.utilityStructs.CustomDate;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,13 +16,14 @@ public class Friends implements Comparable<Friends>
 {
     private int id1;
     private int id2;
+    private CustomDate friendedOn;
 
-    public Friends(Person p1, Person p2)
+    public Friends(Person p1, Person p2, CustomDate date)
     {
-        this(p1.getId(), p2.getId());
+        this(p1.getId(), p2.getId(), date);
     }
 
-    public Friends(int id1, int id2)
+    public Friends(int id1, int id2, CustomDate date)
     {
         if (id1 == id2)
         {
@@ -30,6 +32,7 @@ public class Friends implements Comparable<Friends>
 
         this.id1 = id1;
         this.id2 = id2;
+        this.friendedOn = date;
     }
 
     public int getId1()
@@ -44,7 +47,7 @@ public class Friends implements Comparable<Friends>
 
     public String toString()
     {
-        return "" + id1 + "," + id2;
+        return "" + id1 + "," + id2 + "," + friendedOn;
     }
 
     public int compareTo(Friends friend)
@@ -81,6 +84,6 @@ public class Friends implements Comparable<Friends>
 
     public static void toCSV(ArrayList<Friends> friends, String fileName)
     {
-        CSVWriter.toCSV(friends.toArray(), "id1,id2", fileName);
+        CSVWriter.toCSV(friends.toArray(), "id1,id2,friendedOn", fileName);
     }
 }

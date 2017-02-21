@@ -32,6 +32,7 @@ public class DBGenerator
     private int friendGroups;
     private int friendSingles;
     private int friendGroupMin = 5;
+//    private int friendGroupMin = 1; // Use when running xsmall
     private int friendGroupMean;
     private int groupMin = 5;
     private int likeMean;
@@ -83,10 +84,10 @@ public class DBGenerator
             set.addAll(generator.generateFriendGroup(people, friendGroupMean, friendGroupMin));
         }
 
-/*        for (int i = 0; i < friendSingles; i++)
+        for (int i = 0; i < friendSingles; i++)
         {
             set.addAll(generator.generateRandomFriendship(people));
-        }*/
+        }
 
         return new ArrayList<>(set);
     }

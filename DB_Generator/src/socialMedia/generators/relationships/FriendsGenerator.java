@@ -1,12 +1,11 @@
 package socialMedia.generators.relationships;
 
 import socialMedia.Relationships.Friends;
+import socialMedia.generators.structures.DateGenerator;
 import socialMedia.nodes.Person;
+import socialMedia.utilityStructs.CustomDate;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by zaharacw on 2/9/17.
@@ -24,15 +23,24 @@ public class FriendsGenerator
     {
         ArrayList<Friends> list= new ArrayList<>();
 
-        list.add(new Friends(p1, p2));
-        list.add(new Friends(p2, p1));
+        CustomDate date;
+        if (p1.getAccountCreated().compareTo(p2.getAccountCreated()) < 1)
+        {
+            date = DateGenerator.generateDateAfter(p2.getAccountCreated());
+        }
+        else
+        {
+            date = DateGenerator.generateDateAfter(p1.getAccountCreated());
+        }
+
+        list.add(new Friends(p1, p2, date));
+        list.add(new Friends(p2, p1, date));
 
         return list;
     }
 
     public ArrayList<Friends> generateRandomFriendship(ArrayList<Person> people)
     {
-        ArrayList<Friends> list= new ArrayList<>();
         Person p1 = people.get(rand.nextInt(people.size()));
         Person p2 = people.get(rand.nextInt(people.size()));
 
@@ -41,10 +49,7 @@ public class FriendsGenerator
             p2 = people.get(rand.nextInt(people.size()));
         }
 
-        list.add(new Friends(p1, p2));
-        list.add(new Friends(p2, p1));
-
-        return list;
+        return generateFriendship(p1, p2);
     }
 
     public ArrayList<Friends> generateFriendGroup(ArrayList<Person> people, int mean, int min)
