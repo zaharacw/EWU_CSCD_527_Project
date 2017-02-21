@@ -28,8 +28,8 @@ public class Friends implements Comparable<Friends>
             throw new IllegalArgumentException("Friend ids must be unique");
         }
 
-        this.id1 = Math.min(id1, id2);
-        this.id2 = Math.max(id1, id2);
+        this.id1 = id1;
+        this.id2 = id2;
     }
 
     public int getId1()

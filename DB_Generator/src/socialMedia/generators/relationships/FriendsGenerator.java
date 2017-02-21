@@ -47,9 +47,15 @@ public class FriendsGenerator
         return list;
     }
 
-    public ArrayList<Friends> generateFriendGroup(ArrayList<Person> people, int min, int max)
+    public ArrayList<Friends> generateFriendGroup(ArrayList<Person> people, int mean, int min)
     {
-        int goal = rand.nextInt(max + 1 - min) + min;
+        int goal = (int)(rand.nextGaussian() * ((mean - min) / 4) + mean);
+
+        if (goal < min)
+        {
+            goal = min;
+        }
+
         int count = 0;
         int attempts = 0;
 

@@ -1,7 +1,7 @@
 package socialMedia.generators.nodes;
 
 import socialMedia.enums.Content;
-import socialMedia.nodes.Group;
+import socialMedia.generators.structures.DateGenerator;
 import socialMedia.nodes.Person;
 import socialMedia.nodes.Post;
 import socialMedia.utilityStructs.CustomDate;
