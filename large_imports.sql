@@ -3,12 +3,12 @@ INTO TABLE social_network_large.GENDER
 FIELDS TERMINATED BY ',' 
 IGNORE 1 LINES;
 
-LOAD DATA INFILE 'social_network_data/large/enums/sates.csv' IGNORE 
+LOAD DATA INFILE 'social_network_data/large/enums/state.csv' IGNORE 
 INTO TABLE social_network_large.STATES 
 FIELDS TERMINATED BY ',' 
 IGNORE 1 LINES;
 
-LOAD DATA INFILE 'social_network_data/large/enums/topics.csv' IGNORE 
+LOAD DATA INFILE 'social_network_data/large/enums/topic.csv' IGNORE 
 INTO TABLE social_network_large.TOPICS 
 FIELDS TERMINATED BY ',' 
 IGNORE 1 LINES;
