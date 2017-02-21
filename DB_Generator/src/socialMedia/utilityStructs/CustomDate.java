@@ -88,7 +88,7 @@ public class CustomDate implements Comparable<CustomDate>
 
     public String toString()
     {
-        return "" + month.getValue() + "/" + day + "/" + year.getValue();
+        return "" + year.getValue() + "-" + appendZeros(month.getValue()) + "-" + appendZeros(day);
     }
 
     public int compareTo(CustomDate cd)
@@ -108,5 +108,15 @@ public class CustomDate implements Comparable<CustomDate>
         }
 
         return this.day - cd.getDay();
+    }
+
+    private String appendZeros(int value)
+    {
+        if (value / 10 < 1)
+        {
+            return "0" + value;
+        }
+
+        return "" + value;
     }
 }
