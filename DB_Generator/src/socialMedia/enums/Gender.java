@@ -1,5 +1,7 @@
 package socialMedia.enums;
 
+import socialMedia.CSVWriter;
+
 /**
  * Created by zaharacw on 2/17/17.
  */
@@ -26,7 +28,7 @@ public enum Gender
 
     public String toString()
     {
-        return "" + id + "," + abv;
+        return "" + id + "," + abv + "," + fullName;
     }
 
     public String getName()
@@ -52,5 +54,8 @@ public enum Gender
         throw new IllegalArgumentException("Gender ID must be between 1 and 2 inclusive: " + id);
     }
 
-
+    public static void toCSV(String fileName)
+    {
+        CSVWriter.toCSV(Gender.values(), "id,abv,name", fileName);
+    }
 }

@@ -3,6 +3,7 @@ import socialMedia.Relationships.Friends;
 import socialMedia.Relationships.Likes;
 import socialMedia.Relationships.Member;
 import socialMedia.enums.Content;
+import socialMedia.enums.Gender;
 import socialMedia.enums.State;
 import socialMedia.enums.Topic;
 import socialMedia.nodes.Group;
@@ -60,5 +61,6 @@ public class Test
         Friends.toCSV(friends, OUT + "friends.csv");
         Member.toCSV(members, OUT + "members.csv");
         Likes.toCSV(likes, OUT + "likes.csv");
+        Gender.toCSV(OUT + "gender.csv");
     }
 }
