@@ -22,11 +22,16 @@ public class MemberGenerator
         //Intentionally blank
     }
 
-    public ArrayList<Member> generateMemeberList(ArrayList<Person> people, Group group, int min, int max)
+    public ArrayList<Member> generateMemeberList(ArrayList<Person> people, Group group, int mean, int min)
     {
         int count = 0;
         int attempts = 0;
-        int goal = rand.nextInt(max + 1 - min) + min;
+        int goal = (int)(rand.nextGaussian() * ((mean - min) / 4) + mean);
+
+        if (goal < min)
+        {
+            goal = min;
+        }
 
         HashSet<Person> set = new HashSet<>();
 

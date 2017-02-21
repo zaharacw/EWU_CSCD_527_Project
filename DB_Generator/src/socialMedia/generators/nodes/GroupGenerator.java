@@ -1,5 +1,6 @@
 package socialMedia.generators.nodes;
 
+import socialMedia.generators.structures.DateGenerator;
 import socialMedia.utilityStructs.CustomDate;
 import socialMedia.nodes.Group;
 import socialMedia.nodes.Person;

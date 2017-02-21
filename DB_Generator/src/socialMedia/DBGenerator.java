@@ -9,9 +9,12 @@ import socialMedia.generators.nodes.PostGenerator;
 import socialMedia.generators.relationships.FriendsGenerator;
 import socialMedia.generators.relationships.LikesGenerator;
 import socialMedia.generators.relationships.MemberGenerator;
+import socialMedia.generators.structures.KeySetGenerator;
+import socialMedia.generators.structures.NameGenerator;
 import socialMedia.nodes.Group;
 import socialMedia.nodes.Person;
 import socialMedia.nodes.Post;
+import socialMedia.utilityStructs.KeySet;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,57 +25,41 @@ import java.util.Random;
  */
 public class DBGenerator
 {
-    private Random rand = new Random();
     private int people;
     private int groups;
     private int posts;
+    private int friendsPerPerson;
+    private int friendGroups;
+    private int friendSingles;
     private int friendGroupMin = 5;
-    private int friendGroupMax = 15;
+    private int friendGroupMean;
     private int groupMin = 5;
-    private int groupMax = 100;
-    private int likeMin = 0;
-    private int likeMax = 50;
+    private int likeMean;
+    private PersonGenerator personGen;
 
-    public DBGenerator(int people, int groups, int posts)
+    public DBGenerator(int people, int friendsPerPerson, int friendGroupMean, int groups, int posts,
+                       String maleNameFile, String femaleNameFile, String surnameFile)
     {
         this.people = people;
+        this.friendsPerPerson = friendsPerPerson;
+        this.friendGroupMean = friendGroupMean;
         this.groups = groups;
         this.posts = posts;
-    }
+        this.personGen = new PersonGenerator(
+                new NameGenerator(new KeySetGenerator(maleNameFile)),
+                new NameGenerator(new KeySetGenerator(femaleNameFile)),
+                new NameGenerator(new KeySetGenerator(surnameFile)));
+        this.likeMean = this.posts / this.people * 4;
 
-    public void setFriendGroupMin(int friendGroupMin)
-    {
-        this.friendGroupMin = friendGroupMin;
-    }
+        this.friendGroups = (this.people * this.friendsPerPerson) /
+                (this.friendGroupMean * (this.friendGroupMean - 1));
 
-    public void setFriendGroupMax(int friendGroupMax)
-    {
-        this.friendGroupMax = friendGroupMax;
-    }
-
-    public void setGroupMin(int groupMin)
-    {
-        this.groupMin = groupMin;
-    }
-
-    public void setGroupMax(int groupMax)
-    {
-        this.groupMax = groupMax;
-    }
-
-    public void setLikeMin(int likeMin)
-    {
-        this.likeMin = likeMin;
-    }
-
-    public void setLikeMax(int likeMax)
-    {
-        this.likeMax = likeMax;
+        this.friendSingles = (this.people * this.friendsPerPerson) / 2;
     }
 
     public ArrayList<Person> generatePeople()
     {
-        return PersonGenerator.createPeople(1, people);
+        return personGen.createPeople(1, people);
     }
 
     public ArrayList<Group> generateGroups(ArrayList<Person> people)
@@ -85,20 +72,21 @@ public class DBGenerator
         return PostGenerator.generatePosts(1, posts, people);
     }
 
-    public ArrayList<Friends> generateFriends(ArrayList<Person> people, int groups, int singles)
+    public ArrayList<Friends> generateFriends(ArrayList<Person> people)
     {
+
         HashSet<Friends> set = new HashSet<>();
         FriendsGenerator generator = new FriendsGenerator();
 
-        for (int i = 0; i < groups; i++)
+        for (int i = 0; i < friendGroups; i++)
         {
-            set.addAll(generator.generateFriendGroup(people, friendGroupMin, friendGroupMax));
+            set.addAll(generator.generateFriendGroup(people, friendGroupMean, friendGroupMin));
         }
 
-        for (int i = 0; i < singles; i++)
+/*        for (int i = 0; i < friendSingles; i++)
         {
             set.addAll(generator.generateRandomFriendship(people));
-        }
+        }*/
 
         return new ArrayList<>(set);
     }
@@ -110,7 +98,7 @@ public class DBGenerator
 
         for (Person p : people)
         {
-            set.addAll(generator.generateLikesList(p, posts, likeMin, likeMax));
+            set.addAll(generator.generateLikesList(p, posts, likeMean));
         }
 
         return new ArrayList<>(set);
@@ -123,7 +111,7 @@ public class DBGenerator
 
         for (Group g : groups)
         {
-            set.addAll(generator.generateMemeberList(people, g, groupMin, groupMax));
+            set.addAll(generator.generateMemeberList(people, g, friendsPerPerson, groupMin));
         }
 
         return new ArrayList<>(set);

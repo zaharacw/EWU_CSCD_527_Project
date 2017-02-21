@@ -33,20 +33,23 @@ public class LikesGenerator
     }
 
     /**
-     * Generates the list of posts liked by a singer person. The number of posts liked is randomly chosen between
-     * min and max.
+     * Generates the list of posts liked by a singer person. The number of posts liked normally chosen with a mean
+     * of mean and a stadard deviation of mean / 4.
      *
      * @param person
      * @param posts
-     * @param min
-     * @param max
      * @return
      */
-    public ArrayList<Likes> generateLikesList(Person person, ArrayList<Post> posts, int min, int max)
+    public ArrayList<Likes> generateLikesList(Person person, ArrayList<Post> posts, int mean)
     {
         int count = 0;
         int attempts = 0;
-        int goal = rand.nextInt(max + 1 - min) + min;
+        int goal = (int)(rand.nextGaussian() * (mean / 4) + mean);
+
+        if (goal < 0)
+        {
+            goal = 0;
+        }
 
         HashSet<Post> set = new HashSet<>();
 
