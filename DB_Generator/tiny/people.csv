@@ -1,4 +1,4 @@
-id,first_name,last_name,state_id,birthday,age,gender_id,accountCreatedDate
+id,first_name,last_name,state_id,birthday,age,gender_id,acct_created_date
 1,William,Chandler,12,1958-09-05,58,1,2015-04-19
 2,Jacob,Greene,2,1960-09-05,56,1,2006-11-03
 3,John,Christian,41,1967-09-25,49,1,2014-01-18

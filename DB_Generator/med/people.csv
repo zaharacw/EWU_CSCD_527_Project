@@ -1,4 +1,4 @@
-id,first_name,last_name,state_id,birthday,age,gender_id,accountCreatedDate
+id,first_name,last_name,state_id,birthday,age,gender_id,acct_created_date
 1,Henry,Williams,3,1993-01-29,24,1,2009-12-17
 2,Erika,Snyder,42,1983-04-07,33,2,2002-05-03
 3,Frederick,Calhoun,19,1975-09-21,41,1,2014-03-09

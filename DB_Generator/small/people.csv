@@ -1,4 +1,4 @@
-id,first_name,last_name,state_id,birthday,age,gender_id,accountCreatedDate
+id,first_name,last_name,state_id,birthday,age,gender_id,acct_created_date
 1,Robert,Harris,45,1978-05-11,38,1,2005-09-30
 2,Marva,James,29,1960-05-29,56,2,2005-01-18
 3,Alton,Gibbs,27,1962-02-20,55,1,2013-10-18
