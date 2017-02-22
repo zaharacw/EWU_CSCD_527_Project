@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public class Test
 {
     public static final String PATH ="/Users/zaharacw/Documents/EWU/CSCD/CSCD_527/EWU_CSCD_527_Project/DB_Generator/name_keys/";
-   //xsmall output 10 friends per
+/*   //xsmall output 10 friends per
     public static final String OUT = "tiny/";
     public static final int PEOPLE = 100;
-    public static final int FRIENDS = 10;
+    public static final int FRIENDS = 10;*/
 
 /*    //small out 25 friends per
     public static final String OUT = "smallout/";
@@ -33,10 +33,10 @@ public class Test
     public static final int PEOPLE = 10000;
     public static final int FRIENDS = 50;*/
 
-/*    //large out 50 friends per
+    //large out 50 friends per
     public static final String OUT = "largeout/";
     public static final int PEOPLE = 100000;
-    public static final int FRIENDS = 50;*/
+    public static final int FRIENDS = 50;
 
 
     public static void main(String [] args)
