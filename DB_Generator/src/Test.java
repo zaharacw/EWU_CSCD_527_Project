@@ -24,17 +24,17 @@ public class Test
     public static final int FRIENDS = 10;*/
 
 /*    //small out 25 friends per
-    public static final String OUT = "smallout/";
+    public static final String OUT = "small/";
     public static final int PEOPLE = 1000;
     public static final int FRIENDS = 25;*/
 
 /*    //med out 50 friends per
-    public static final String OUT = "medout/";
+    public static final String OUT = "med/";
     public static final int PEOPLE = 10000;
     public static final int FRIENDS = 50;*/
 
     //large out 50 friends per
-    public static final String OUT = "largeout/";
+    public static final String OUT = "large/";
     public static final int PEOPLE = 100000;
     public static final int FRIENDS = 50;
 
@@ -52,15 +52,15 @@ public class Test
         ArrayList<Likes> likes = dbGen.generateLikes(people, posts);
         ArrayList<Member> members = dbGen.generateMembers(people, groups);
 
-        Content.toCSV(OUT + "enums/content.csv");
-        State.toCSV(OUT + "enums/state.csv");
-        Topic.toCSV(OUT + "enums/topic.csv");
+        Content.toCSV("enums/content.csv");
+        State.toCSV( "enums/state.csv");
+        Topic.toCSV( "enums/topic.csv");
         Person.toCSV(people, OUT + "people.csv");
         Group.toCSV(groups, OUT + "groups.csv");
         Post.toCSV(posts, OUT + "posts.csv");
         Friends.toCSV(friends, OUT + "friends.csv");
         Member.toCSV(members, OUT + "members.csv");
         Likes.toCSV(likes, OUT + "likes.csv");
-        Gender.toCSV(OUT + "enums/gender.csv");
+        Gender.toCSV( "enums/gender.csv");
     }
 }

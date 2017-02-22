@@ -23,7 +23,7 @@ public class DateGenerator
 
         int day = 1 + rand.nextInt(month.maxLength());
 
-        if (month.getValue() == 2 && !Year.isLeap(yr))
+        if (month == Month.FEBRUARY && !Year.isLeap(yr))
         {
             while (day == 29)
             {
@@ -60,6 +60,14 @@ public class DateGenerator
         Month month = Month.of(1 + rand.nextInt(12));
 
         int day = 1 + rand.nextInt(month.maxLength());
+
+        if (month == Month.FEBRUARY && !Year.isLeap(yr))
+        {
+            while (day == 29)
+            {
+                day = 1 + rand.nextInt(month.maxLength());
+            }
+        }
 
         return new CustomDate(month, day, yr);
     }
