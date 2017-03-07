@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public class Test
 {
     public static final String PATH ="/Users/zaharacw/Documents/EWU/CSCD/CSCD_527/EWU_CSCD_527_Project/DB_Generator/name_keys/";
-/*   //xsmall output 10 friends per
+   //xsmall output 10 friends per
     public static final String OUT = "tiny/";
     public static final int PEOPLE = 100;
-    public static final int FRIENDS = 10;*/
+    public static final int FRIENDS = 10;
 
 /*    //small out 25 friends per
     public static final String OUT = "small/";
@@ -33,10 +33,10 @@ public class Test
     public static final int PEOPLE = 10000;
     public static final int FRIENDS = 50;*/
 
-    //large out 50 friends per
+/*    //large out 50 friends per
     public static final String OUT = "large/";
     public static final int PEOPLE = 100000;
-    public static final int FRIENDS = 50;
+    public static final int FRIENDS = 50;*/
 
 
     public static void main(String [] args)
@@ -52,15 +52,15 @@ public class Test
         ArrayList<Likes> likes = dbGen.generateLikes(people, posts);
         ArrayList<Member> members = dbGen.generateMembers(people, groups);
 
-//        Content.toCSV("enums/content.csv");
-//        State.toCSV( "enums/state.csv");
-//        Topic.toCSV( "enums/topic.csv");
+        Content.toCSV("enums/content.csv");
+        State.toCSV( "enums/state.csv");
+        Topic.toCSV( "enums/topic.csv");
         Person.toCSV(people, OUT + "people.csv");
         Group.toCSV(groups, OUT + "groups.csv");
         Post.toCSV(posts, OUT + "posts.csv");
         Friends.toCSV(friends, OUT + "friends.csv");
         Member.toCSV(members, OUT + "members.csv");
         Likes.toCSV(likes, OUT + "likes.csv");
-//        Gender.toCSV( "enums/gender.csv");
+        Gender.toCSV( "enums/gender.csv");
     }
 }
