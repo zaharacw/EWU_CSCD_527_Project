@@ -52,15 +52,15 @@ public class Test
         ArrayList<Likes> likes = dbGen.generateLikes(people, posts);
         ArrayList<Member> members = dbGen.generateMembers(people, groups);
 
-        Content.toCSV("enums/content.csv");
-        State.toCSV( "enums/state.csv");
-        Topic.toCSV( "enums/topic.csv");
+//        Content.toCSV("enums/content.csv");
+//        State.toCSV( "enums/state.csv");
+//        Topic.toCSV( "enums/topic.csv");
         Person.toCSV(people, OUT + "people.csv");
         Group.toCSV(groups, OUT + "groups.csv");
         Post.toCSV(posts, OUT + "posts.csv");
         Friends.toCSV(friends, OUT + "friends.csv");
         Member.toCSV(members, OUT + "members.csv");
         Likes.toCSV(likes, OUT + "likes.csv");
-        Gender.toCSV( "enums/gender.csv");
+//        Gender.toCSV( "enums/gender.csv");
     }
 }

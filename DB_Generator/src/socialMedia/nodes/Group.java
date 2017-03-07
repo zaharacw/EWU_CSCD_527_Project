@@ -35,6 +35,8 @@ public class Group
         return createdOn;
     }
 
+    public Person getCreator() { return creator; }
+
     @Override
     public boolean equals(Object o)
     {

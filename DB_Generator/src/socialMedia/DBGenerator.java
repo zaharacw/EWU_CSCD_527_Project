@@ -25,14 +25,15 @@ import java.util.Random;
  */
 public class DBGenerator
 {
+    private static final int FGMIN_TINY = 1;
+    private static final int FGMIN_GENERAL = 5;
     private int people;
     private int groups;
     private int posts;
     private int friendsPerPerson;
     private int friendGroups;
     private int friendSingles;
-    private int friendGroupMin = 5;
-//    private int friendGroupMin = 1; // Use when running xsmall
+    private int friendGroupMin;
     private int friendGroupMean;
     private int groupMin = 5;
     private int likeMean;
@@ -41,6 +42,14 @@ public class DBGenerator
     public DBGenerator(int people, int friendsPerPerson, int friendGroupMean, int groups, int posts,
                        String maleNameFile, String femaleNameFile, String surnameFile)
     {
+        if(friendGroupMean <= FGMIN_GENERAL)
+        {
+            this.friendGroupMin = FGMIN_TINY;
+        }
+        else
+        {
+            this.friendGroupMin = FGMIN_GENERAL;
+        }
         this.people = people;
         this.friendsPerPerson = friendsPerPerson;
         this.friendGroupMean = friendGroupMean;
@@ -52,10 +61,10 @@ public class DBGenerator
                 new NameGenerator(new KeySetGenerator(surnameFile)));
         this.likeMean = this.posts / this.people * 4;
 
-        this.friendGroups = (this.people * this.friendsPerPerson) /
+        this.friendGroups = (this.people * this.friendsPerPerson / 2) /
                 (this.friendGroupMean * (this.friendGroupMean - 1));
 
-        this.friendSingles = (this.people * this.friendsPerPerson) / 2;
+        this.friendSingles = (this.people * this.friendsPerPerson / 2) / 2;
     }
 
     public ArrayList<Person> generatePeople()
@@ -113,6 +122,7 @@ public class DBGenerator
         for (Group g : groups)
         {
             set.addAll(generator.generateMemeberList(people, g, friendsPerPerson, groupMin));
+            set.add(new Member(g.getCreator(), g));
         }
 
         return new ArrayList<>(set);
